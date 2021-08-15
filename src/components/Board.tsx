@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { moveInBoard, restart, winnerInGame } from "../redux/actions/gameAction";
+import { restart, winnerInGame } from "../redux/actions/gameAction";
 import { checkDynamicBoard } from "../utils/checkBoard";
 import { SizeBoardInput } from "./size-board-input/SizeBoardInput";
 import "./Board.css";
@@ -10,15 +10,12 @@ import "./Board.css";
 const Board = () => {
     const {sizeBoard} = useSelector(({game}:any)=>game)
     const {newGame} = useSelector(({game}:any)=>game)
-
-
-    // const {board} = useSelector(({game}:any)=>game)
     const dispatch = useDispatch()
     const [board,setBoard]=useState([])
     const [player,setPlayer]=useState(1)
-     const [move,setMove]=useState(0)
+    const [move,setMove]=useState(0)
     const {winner}=useSelector(({game}:any)=>game)
-    // const {move}=useSelector(({game}:any)=>game)
+
     useEffect(()=>{
       console.log("sizeBoard in board: "+sizeBoard)
         document.body.style.setProperty("--board-size", `${Math.sqrt(sizeBoard)}`);
@@ -26,7 +23,6 @@ const Board = () => {
         setBoard([...Array(sizeBoard).fill(null)])
     },[sizeBoard])
      
-
     useEffect(()=>{
       console.log("sizeBoard in board: "+newGame)
        /*@ts-ignore*/
@@ -37,7 +33,6 @@ const Board = () => {
       dispatch(restart(false))
     },[newGame])
   
-
     useEffect(() => {
       if (checkDynamicBoard(board))
       dispatch(winnerInGame((checkDynamicBoard(board) === 1 ? "Player 1" : "Player 2")));
@@ -51,14 +46,12 @@ const Board = () => {
       if (board[index]) return;
   
       const tempBoard = [...board];
-           /*@ts-ignore*/
+       /*@ts-ignore*/
       tempBoard[index] = player;
       setBoard(tempBoard);
       
-  
       setPlayer(player === 1 ? 2 : 1);
       setMove((prevState: any) => prevState + 1);
-      // dispatch(moveInBoard();
     };
   
     return (
@@ -88,7 +81,7 @@ const Board = () => {
     );
   };
   
-  export default Board;
+export default Board;
 
 
   

@@ -10,23 +10,11 @@ export const declareSizeBoard = (size:any)=>(dispatch:AppDispatch)=>{
     })
 }
 
-export const moveInBoard = (move:any)=>(dispatch:AppDispatch)=>{
-    dispatch({
-        type:MOVE,
-        move
-    })
-} 
-
 export const winnerInGame=(winner:string)=>(dispatch:AppDispatch)=>{
     dispatch({
         type: WINNER,
         winner,
     })
-    // dispatch({
-    //     type:PLAYER,
-    //     player
-    // })
-    //,player:React.MutableRefObject<number>=0
 }
 export const restart=(newGame:boolean)=>(dispatch:AppDispatch)=>{
     dispatch({

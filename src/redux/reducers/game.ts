@@ -3,11 +3,6 @@ import { BOARD_SIZE, MOVE, PLAYER, RESTART, WINNER } from "../actions/actionType
 
 const initialState={
     sizeBoard:9,
-    board:[...Array(9).fill(null)],
-    player:1,
-    winner:'',
-    move:0,
-    moveLimit:9,
     newGame:false
 }
 
@@ -22,16 +17,6 @@ export default (state =initialState , action:any)=>{
             return {
                 ...state,
                 newGame:action.newGame,
-             }
-        case PLAYER:
-            return {
-                ...state,
-                player:action.player,
-             }
-        case MOVE:
-            return {
-                ...state,
-                move:action.move,
              }
         case WINNER:{
             return {
