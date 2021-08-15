@@ -28,10 +28,10 @@ export const winnerInGame=(winner:string)=>(dispatch:AppDispatch)=>{
     // })
     //,player:React.MutableRefObject<number>=0
 }
-export const restart=()=>(dispatch:AppDispatch)=>{
+export const restart=(newGame:boolean)=>(dispatch:AppDispatch)=>{
     dispatch({
         type:RESTART,
-        newGame:true
+        newGame,
     })
 }
 

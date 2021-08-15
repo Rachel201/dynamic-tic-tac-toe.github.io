@@ -14,7 +14,7 @@ function App() {
   const dispatch = useDispatch()
   
   const handleRestart=()=>{
-    dispatch(restart());
+    dispatch(restart(true));
   }
   console.log('move: '+move)
   return (
