@@ -21,7 +21,7 @@ function App() {
     <div className="App">
       {/* <HeaderWinner/> */}
       <button onClick={handleRestart}>Restart</button>
-      <button onClick={handleClearBoard}>clear board</button>
+      {/* <button onClick={handleClearBoard}>clear board</button> */}
        <Board/>
     </div>
 
