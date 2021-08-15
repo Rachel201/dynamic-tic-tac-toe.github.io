@@ -2,7 +2,7 @@ import { FormControl, MenuItem, Select } from "@material-ui/core"
 import { Console } from "console";
 import { useEffect, useRef, useState} from "react"
 import { useDispatch} from "react-redux";
-import {declareSizeBoard} from "../../redux/actions/gameAction";
+import {declareSizeBoard, restart} from "../../redux/actions/gameAction";
 
 interface IsizeBoard{
     text:string,
@@ -42,6 +42,7 @@ export const SizeBoardInput = () =>{
     useEffect(()=>{
     //   console.log("sizeBoard in input: "+sizeBoard);
       dispatch(declareSizeBoard(sizeBoard));
+      dispatch(restart(true));
     },[sizeBoard])
 
     return(
@@ -49,7 +50,6 @@ export const SizeBoardInput = () =>{
         <Select className="InputForOperation"
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            
             onChange={(e:any)=>setSizeBoard(e.target.value)}
             label="Model"
         >

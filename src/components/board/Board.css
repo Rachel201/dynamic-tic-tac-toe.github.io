@@ -3,6 +3,7 @@
     grid-template-columns: repeat(var(--board-size), 10em);
     grid-template-rows: repeat(var(--board-size), 10em);
     margin-top: 1em;
+    
 }
 
 .board-cell {

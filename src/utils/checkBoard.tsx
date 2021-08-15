@@ -42,7 +42,10 @@ export const checkDynamicBoard = (board: any): number | undefined => {
       })
       .slice(0, boardDimension);
 
-    if (evaluateBoard(rows)) return evaluateBoard(rows);
+    if (evaluateBoard(rows)){
+      console.log(rows)
+      return evaluateBoard(rows);
+    } 
     if (evaluateBoard(columns)) return evaluateBoard(columns);
     if (evaluateBoard(diagonalOne)) return evaluateBoard(diagonalOne);
     if (evaluateBoard(diagonalTwo)) return evaluateBoard(diagonalTwo);

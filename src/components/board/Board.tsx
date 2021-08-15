@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { restart, winnerInGame } from "../redux/actions/gameAction";
-import { checkDynamicBoard } from "../utils/checkBoard";
-import { SizeBoardInput } from "./size-board-input/SizeBoardInput";
+import { countWinner, newBoard, restart, winnerInGame } from "../../redux/actions/gameAction";
+import { checkDynamicBoard } from "../../utils/checkBoard";
+import { SizeBoardInput } from "../size-board-input/SizeBoardInput";
 import "./Board.css";
 
 
@@ -15,6 +15,10 @@ const Board = () => {
     const [player,setPlayer]=useState(1)
     const [move,setMove]=useState(0)
     const {winner}=useSelector(({game}:any)=>game)
+    const {squreO}=useSelector(({game}:any)=>game)
+    const {squreX}=useSelector(({game}:any)=>game)
+    const {drow}=useSelector(({game}:any)=>game)
+    const {clearBoard}=useSelector(({game}:any)=>game)
 
     useEffect(()=>{
       console.log("sizeBoard in board: "+sizeBoard)
@@ -32,17 +36,38 @@ const Board = () => {
       dispatch(winnerInGame(""));
       dispatch(restart(false))
     },[newGame])
+
+    useEffect(()=>{
+      console.log("sizeBoard in board: "+newGame)
+       /*@ts-ignore*/
+      setBoard([...Array(sizeBoard).fill(null)]);
+      setPlayer(player === 1 ? 2 : 1);
+      setMove(0);
+      dispatch(winnerInGame(""));
+      dispatch(newBoard(false))
+    },[clearBoard]);
   
     useEffect(() => {
-      if (checkDynamicBoard(board))
-      dispatch(winnerInGame((checkDynamicBoard(board) === 1 ? "Player 1" : "Player 2")));
+      if (checkDynamicBoard(board)){
+        dispatch(winnerInGame((checkDynamicBoard(board) === 1 ? "o" : "x")));
+      }
     }, [board]);
 
     const handleClick = (index: number) => {
-      if (winner) return;
+      if (winner==='o'){
+        dispatch(countWinner('shapeO',squreO+1));
+        return;
+      } 
+      if (winner==='x'){
+        console.log('x is')
+        dispatch(countWinner('shapeO',squreX+1));
+        return;
+      }
       
-      if (move ===sizeBoard ) return;
-  
+      if (move ===sizeBoard ) {
+        dispatch(countWinner('draw',drow+1));
+        return;
+      }
       if (board[index]) return;
   
       const tempBoard = [...board];
@@ -55,13 +80,13 @@ const Board = () => {
     };
   
     return (
-      <div>
+      <div> 
         {winner ? (
         <h3>The winner is {winner}</h3>
       ) : move === sizeBoard? (
         <h3>Draw</h3>
       ) : (
-        <h3>Player {player} turn.</h3>
+        <h3 className='squre'>Player {player==1?'0':'x'} turn.</h3>
       )}
       <p>Moves{move}</p>
        <SizeBoardInput/>
