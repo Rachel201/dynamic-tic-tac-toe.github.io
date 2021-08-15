@@ -9,13 +9,16 @@ import "./Board.css";
 
 const Board = () => {
     const {sizeBoard} = useSelector(({game}:any)=>game)
+    const {newGame} = useSelector(({game}:any)=>game)
+
+
     // const {board} = useSelector(({game}:any)=>game)
     const dispatch = useDispatch()
     const [board,setBoard]=useState([])
     const [player,setPlayer]=useState(1)
-
+     const [move,setMove]=useState(0)
     const {winner}=useSelector(({game}:any)=>game)
-    const {move}=useSelector(({game}:any)=>game)
+    // const {move}=useSelector(({game}:any)=>game)
     useEffect(()=>{
       console.log("sizeBoard in board: "+sizeBoard)
         document.body.style.setProperty("--board-size", `${Math.sqrt(sizeBoard)}`);
@@ -23,6 +26,16 @@ const Board = () => {
         setBoard([...Array(sizeBoard).fill(null)])
     },[sizeBoard])
      
+
+    useEffect(()=>{
+      console.log("sizeBoard in board: "+restart)
+
+      document.body.style.setProperty("--board-size", `${Math.sqrt(sizeBoard)}`);
+      /*@ts-ignore*/
+      setBoard([...Array(sizeBoard).fill(null)])
+      setMove(0);
+      setPlayer(1);
+    },[newGame])
   
 
     useEffect(() => {
@@ -44,11 +57,20 @@ const Board = () => {
       
   
       setPlayer(player === 1 ? 2 : 1);
-      dispatch(moveInBoard((prevState:any) => prevState + 1));
+      setMove((prevState: any) => prevState + 1);
+      // dispatch(moveInBoard();
     };
   
     return (
       <div>
+        {winner ? (
+        <h3>The winner is {winner}</h3>
+      ) : move === sizeBoard? (
+        <h3>Draw</h3>
+      ) : (
+        <h3>Player {player} turn.</h3>
+      )}
+      <p>moves{move}</p>
        <SizeBoardInput/>
        <div className="board-container">
         {board.map((cell: any, index: number) => (

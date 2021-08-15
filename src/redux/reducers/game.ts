@@ -1,4 +1,4 @@
-import { BOARD_SIZE, MOVE, PLAYER, WINNER } from "../actions/actionTypes"
+import { BOARD_SIZE, MOVE, PLAYER, RESTART, WINNER } from "../actions/actionTypes"
 
 
 const initialState={
@@ -7,7 +7,8 @@ const initialState={
     player:1,
     winner:'',
     move:0,
-    moveLimit:9
+    moveLimit:9,
+    newGame:false
 }
 
 export default (state =initialState , action:any)=>{
@@ -16,10 +17,12 @@ export default (state =initialState , action:any)=>{
        return {
            ...state,
            sizeBoard:action.size,
-        //    board:[...Array(action.size).fill(null)],
-        //    moveLimit:action.size,
-          
         }
+        case RESTART:
+            return {
+                ...state,
+                newGame:action.newGame,
+             }
         case PLAYER:
             return {
                 ...state,
@@ -35,7 +38,8 @@ export default (state =initialState , action:any)=>{
                 ...state,
                 winner:action.winner,
             }
-        }     
+        } 
+
         default:
           return{ ...state}  
    }

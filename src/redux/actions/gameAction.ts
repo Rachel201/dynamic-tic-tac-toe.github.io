@@ -1,5 +1,5 @@
 import { AppDispatch } from "../store";
-import { BOARD_SIZE, MOVE, PLAYER, WINNER } from "./actionTypes";
+import { BOARD_SIZE, MOVE, PLAYER, RESTART, WINNER } from "./actionTypes";
 
 
 //The function declare the this the board :3x3 or 4x4 ...
@@ -28,4 +28,11 @@ export const winnerInGame=(winner:string)=>(dispatch:AppDispatch)=>{
     // })
     //,player:React.MutableRefObject<number>=0
 }
+export const restart=()=>(dispatch:AppDispatch)=>{
+    dispatch({
+        type:RESTART,
+        newGame:true
+    })
+}
+
 
