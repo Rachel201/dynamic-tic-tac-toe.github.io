@@ -19,14 +19,14 @@ function App() {
   console.log('move: '+move)
   return (
     <div className="App">
-    {winner ? (
+    {/* {winner ? (
         <h3>The winner is {winner}</h3>
       ) : move ===  sizeBoard? (
         <h3>Draw</h3>
       ) : (
         <h3>Player  turn.</h3>
       )}
-      <p>Moves: {move}</p>
+      <p>Moves: {move}</p> */}
       <button onClick={handleRestart}>Restart</button>
      <Board/>
      

@@ -28,8 +28,7 @@ const Board = () => {
      
 
     useEffect(()=>{
-      console.log("sizeBoard in board: "+restart)
-
+      console.log("sizeBoard in board: "+newGame)
       document.body.style.setProperty("--board-size", `${Math.sqrt(sizeBoard)}`);
       /*@ts-ignore*/
       setBoard([...Array(sizeBoard).fill(null)])
@@ -70,7 +69,7 @@ const Board = () => {
       ) : (
         <h3>Player {player} turn.</h3>
       )}
-      <p>moves{move}</p>
+      <p>Moves{move}</p>
        <SizeBoardInput/>
        <div className="board-container">
         {board.map((cell: any, index: number) => (
