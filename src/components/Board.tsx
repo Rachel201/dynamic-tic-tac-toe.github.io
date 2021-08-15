@@ -29,11 +29,6 @@ const Board = () => {
 
     useEffect(()=>{
       console.log("sizeBoard in board: "+newGame)
-      // document.body.style.setProperty("--board-size", `${Math.sqrt(sizeBoard)}`);
-     
-      // setBoard([...Array(sizeBoard).fill(null)])
-      // setMove(0);
-      // setPlayer(1);
        /*@ts-ignore*/
       setBoard([...Array(sizeBoard).fill(null)]);
       setPlayer(player === 1 ? 2 : 1);
