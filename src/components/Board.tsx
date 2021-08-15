@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { moveInBoard, winnerInGame } from "../redux/actions/gameAction";
+import { moveInBoard, restart, winnerInGame } from "../redux/actions/gameAction";
 import { checkDynamicBoard } from "../utils/checkBoard";
 import { SizeBoardInput } from "./size-board-input/SizeBoardInput";
 import "./Board.css";
@@ -39,7 +39,7 @@ const Board = () => {
       setPlayer(player === 1 ? 2 : 1);
       setMove(0);
       dispatch(winnerInGame(""));
-      dispatch(newGame(false))
+      dispatch(restart(false))
     },[newGame])
   
 
